@@ -8,27 +8,37 @@ const productos = [
 ];
 
 productos.forEach((producto, indice) => {
-console.log("Producto:", producto.nombre, "Precio:", producto.precio, "Disponible:", producto.disponibilidad);
-
+console.log("1) Producto:", producto.nombre, "Precio:", producto.precio, "Disponible:", producto.disponibilidad);
 });
 
 const precioConDescuentos = productos
 .filter(producto => producto.disponibilidad === true)
-.map(producto =>  ({
+.map(producto => ({
     Nombre: producto.nombre, precioConDescuentos: producto.precio * 0.9
 }));
-console.log("Nombre:", producto.nombre, "Precio con Descuento:", producto.precio);
+
+// Imprimir cada producto con descuento
+precioConDescuentos.forEach(producto => {
+    console.log("2) Nombre:", producto.Nombre, "Precio con Descuento:", producto.precioConDescuentos);
+});
 
 const productosBaratos = productos
 .filter(producto => producto.disponibilidad === true && producto.precio <= 100)
-.map(producto => ({Nombre: producto.nombre, Precio: producto.precio }))
-console.log("Productos Baratos:", productosBaratos);
+.map(producto => ({Nombre: producto.nombre, Precio: producto.precio}));
 
-const valorTotal = [precio];
-const suma = productos.reduce((total, productos) => {  
-    if(producto.disponibilidad) {
-        total + productos.precio;
+console.log("3) Productos Baratos:", productosBaratos);
+
+// Suma de precios de productos disponibles usando reduce
+const valorTotal = productos.reduce((total, producto) => {
+    if (producto.disponibilidad) {
+        return total + producto.precio;
     }
-}
+    return total;
+}, 0);
 
-,console.log("Valor total:", valorTotal));
+console.log("4) Valor total de productos disponibles:", valorTotal);
+
+// Encontrar un producto en específico usando find
+let específico = productos.find(producto => producto.nombre === "Webcam HD.");
+console.log("5) Producto específico:", específico);
+
